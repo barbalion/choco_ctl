@@ -14,3 +14,5 @@ The main purpose of the tool is to simplify migration from one computer to anoth
 `wifi_backup.cmd` and `wifi_restore.cmd` are simple scripts to transfer your Wifi Settings across machines. It is also a good way to see your WiFi passwords decrypted. Be carefull if your WiFi setting is a sesitive information!
 
 `win10_remove_ms_spying.cmd` is a simple script to remove telemetry (alias 'spying') functionality of Windows 10.
+
+`cred_manager.cmd` is a shourcut for built-in Credential Manager of Windows. Among other things, it allows you to export/import your credentials (User Names and Passwords) stored in Windows.
