@@ -9,3 +9,8 @@ The main purpose of the tool is to simplify migration from one computer to anoth
 1. Run `choco list` on your reference machine (assuming you have some packages installed by Chocolatey there) to save currently installed packages into `choco.list` file. You may then transfer `choco.list` to destination (along with the sctipt on a flash-drive, let's say).
 1. Run `choco_ctl install` to automatically install Chocolatey on the destination host. You may also run just `choco_ctl` without parameters and it will prompt to install missing Chocolatey.
 1. Run `choco_ctl` on the destination computer and answer the question to manage the list of packages you need to install (you can choose one-by-one, or just approve all of them).
+
+## Other Tools
+`wifi_backup.cmd` and `wifi_restore.cmd` are simple scripts to transfer your Wifi Settings across machines. It is also a good way to see your WiFi passwords decrypted. Be carefull if your WiFi setting is a sesitive information!
+
+`win10_remove_ms_spying.cmd` is a simple script to remove telemetry (alias 'spying') functionality of Windows 10.

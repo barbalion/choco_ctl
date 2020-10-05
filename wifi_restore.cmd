@@ -1,0 +1,1 @@
+forfiles /m *.xml /C "cmd /c netsh wlan add profile @path user=all"
