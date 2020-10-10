@@ -4,6 +4,17 @@ pushd "%~dp0" && net sess 1>nul 2>nul || (powershell -ex unrestricted -Command "
 call :Locale1033
 FOR /F "tokens=2 delims==" %%a IN ('wmic os get OSLanguage /Value') DO call :Locale%%a
 
+call :RemoveService AarSvc
+call :RemoveService DevicePickerUserSvc
+call :RemoveService DeviceAssociationBrokerSvc
+call :RemoveService CredentialEnrollmentManagerUserSvc
+call :RemoveService cbdhsvc
+call :RemoveService CaptureService
+call :RemoveService BluetoothUserService
+call :RemoveService BcastDVRUserService
+call :RemoveService PrintWorkflowUserSvc
+call :RemoveService UdkUserSvc
+
 call :RemoveService DiagTrack
 call :RemoveService dmwappushservice
 call :RemoveService WerSvc
