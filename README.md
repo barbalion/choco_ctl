@@ -16,3 +16,7 @@ The main purpose of the tool is to simplify migration from one computer to anoth
 `win10_remove_ms_spying.cmd` is a simple script to remove telemetry (alias 'spying') functionality of Windows 10.
 
 `cred_manager.cmd` is a shourcut for built-in Credential Manager of Windows. Among other things, it allows you to export/import your credentials (User Names and Passwords) stored in Windows.
+
+`win10_system_settings_fix.cmd` is set of command trying to fix System Settings failerus to start. (aka "open/flashes and immediatly closes").
+
+`wu10.diagcab` is a standard MS launcher of Windows built-in troubleshooters.
