@@ -1,5 +1,5 @@
 @echo off
-pushd "%~dp0" && net sess 1>nul 2>nul || (powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c "%~nx0" %*'" >nul 2>nul & exit /b 1)
+pushd "%~dp0" && net sess 1>nul 2>nul || (powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c \"%~f0\" %*'" >nul 2>nul & exit /b 1)
 
 set LIST_FILE="%~dp0choco.list"
 set TMPLIST_FILE="%~dp0choco.list.tmp"
