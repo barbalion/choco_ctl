@@ -8,6 +8,13 @@ set IGNORE_LIST="%~dp0choco.ignore.list"
 
 if not %1a == a goto %*
 
+choco -v >nul 2>nul
+if %errorlevel% NEQ 0 (
+  echo Chocolatey not found. Press any key to install it or CTRL+C to cancel.
+  pause
+  goto install
+)
+
 if not exist %LIST_FILE% (
   echo File %LIST_FILE% does not exist. Run "%~nx0 list" on reference machine first.
   exit /b 1
@@ -16,12 +23,6 @@ type nul > %TMPLIST_FILE%
 type nul > %CHOSENLIST_FILE%
 for /f "skip=1 tokens=1" %%i in ('type %LIST_FILE%') do echo %%i z >> %TMPLIST_FILE%
 if exist %IGNORE_LIST% for /f "tokens=1" %%i in ('type %IGNORE_LIST%') do echo %%i i >> %TMPLIST_FILE%
-choco -v >nul 2>nul
-if %errorlevel% NEQ 0 (
-  echo Chocolatey was not found. Press any key to install it or CTRL+C to cancel.
-  pause
-  goto install
-)
 for /f "tokens=1" %%i in ('choco list -lr --idonly') do echo %%i i >> %TMPLIST_FILE%
 for /f "tokens=1,2" %%i in ('sort %TMPLIST_FILE%') do (
   if %%j == i set _PREVPKG=%%i
@@ -71,12 +72,14 @@ cinst --ignore-checksums %1
 goto :EOF
 
 :install
+echo Installing Chocolatey. Please wait...
 choco -v 1>nul 2>nul 
 if %errorlevel% EQU 0 (
   echo Chocolatey is already installed. Press any key to run installation script or CTRL+C to cancel.
   pause
 )
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+start "Choco" /min "%comspec%" /c "choco feature enable -n allowGlobalConfirmation"
 echo Press any key to exit. Re-run the script to manage your packeges now.
 pause
 goto :EOF
