@@ -2,8 +2,8 @@
 pushd "%~dp0" && net sess 1>nul 2>nul || (powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c \"%~f0\" %*'" >nul 2>nul & exit /b 1)
 
 set LIST_FILE="%~dp0choco.list"
-set TMPLIST_FILE="%~dp0choco.list.tmp"
-set CHOSENLIST_FILE="%~dp0choco.list_chosen.tmp"
+set TMPLIST_FILE="%TEMP%\choco.list.tmp"
+set CHOSENLIST_FILE="%TEMP%\choco.list_chosen.tmp"
 set IGNORE_LIST="%~dp0choco.ignore.list"
 
 if not %1a == a goto %*
@@ -68,7 +68,7 @@ echo %1 >> %CHOSENLIST_FILE%
 goto :EOF
 
 :do_install
-cinst --ignore-checksums %1
+choco install --ignore-checksums %1
 goto :EOF
 
 :install
