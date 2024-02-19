@@ -38,7 +38,7 @@ del %CHOSENLIST_FILE%
 goto :EOF
 
 :list 
-choco list -lr --idonly > %LIST_FILE%
+choco list -r --idonly > %LIST_FILE%
 goto :EOF
 
 :check
